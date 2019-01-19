@@ -160,6 +160,7 @@
   var evtSource = new EventSource('/stream');
 
   evtSource.onmessage = e => {
+    let data = JSON.parse(e.data);
     console.log(e.data)
   }
 </script>
