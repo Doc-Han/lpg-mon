@@ -54,7 +54,6 @@ router.get('/stream', (req, res) => {
 
   req.on('close', () => {
     clearTimeout(timer);
-    client.end();
   });
 });
 
