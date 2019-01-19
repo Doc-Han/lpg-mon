@@ -23,13 +23,17 @@ router.get('/', function(req, res, next) {
 
 router.get('/update', (req, res, next) => {
   client.publish(req.query.channel, JSON.stringify(req.query), err => {
-    if (err) return res.status(500).send(err.message);
+    if (err) {
+      debug(err);
+      return res.status(500).send(err.message);
+    }
     return res.status(204).end();
   });
 });
 
 router.get('/stream', (req, res) => {
-  req.socket.setTimeout((i *= 6));
+  req.socket.setTimeout(Number.MAX_SAFE_INTEGER);
+  // req.socket.setTimeout((i *= 6));
 
   res.writeHead(200, {
     'Content-Type': 'text/event-stream',

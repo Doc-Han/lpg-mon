@@ -104,9 +104,9 @@
 
       <div class="col-md-6">
         <div class="panel panel-success">
-          <div class="panel-heading">Humidity</div>
+          <div class="panel-heading">LPG Concentration</div>
           <div class="panel-body">
-            <h2>20g/m3</h2>
+            <h2 id="concentration">20g/m3</h2>
           </div>
           <a href="file:///C:/Users/study/Desktop/Nimo2/New%20folder/index4.html#" style="text-decoration: none;">
             <div class="panel-footer">View</div>
@@ -118,7 +118,7 @@
         <div class="panel panel-warning">
           <div class="panel-heading">Temperature</div>
           <div class="panel-body">
-            <h2>20 K</h2>
+            <h2 id="temperature">20 K</h2>
           </div>
           <a href="file:///C:/Users/study/Desktop/Nimo2/New%20folder/index4.html#" style="text-decoration: none;">
             <div class="panel-footer">View</div>
@@ -161,6 +161,8 @@
 
   evtSource.onmessage = e => {
     let data = JSON.parse(e.data);
-    console.log(e.data)
+    document.getElementById('concentration').innerHTML = `${data.conc} gm<sup>-3</sup>`
+    document.getElementById('temperature').innerHTML = `${data.temperature} C`
+    console.log(data)
   }
 </script>
