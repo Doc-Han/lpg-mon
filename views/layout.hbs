@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>{{title}}</title>
+
+  <link rel='stylesheet' href='/stylesheets/bootstrap.min.css' />
+  <link rel='stylesheet' href='/stylesheets/style4.css' />
+</head>
+
+<body>
+  {{{body}}}
+
+  <!-- jQuery CDN -->
+  <script src="/javascripts/jquery-1.12.0.min.js.download"></script>
+  <!-- Bootstrap Js CDN -->
+  <script src="/javascripts/bootstrap.min.js.download"></script>
+  <script src="/javascripts/Chart.min.js.download"></script>
+  <script src="/javascripts/script.js.download"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function () {
+      $('#sidebarCollapse').on('click', function () {
+        $('#sidebar').toggleClass('active');
+      });
+    });
+  </script>
+
+</body>
+
+</html>
