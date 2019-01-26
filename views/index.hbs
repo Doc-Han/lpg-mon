@@ -162,7 +162,7 @@
   evtSource.onmessage = e => {
     let data = JSON.parse(e.data);
     document.getElementById('concentration').innerHTML = `${data.conc} gm<sup>-3</sup>`
-    document.getElementById('temperature').innerHTML = `${data.temperature} C`
+    document.getElementById('temperature').innerHTML = `${data.temperature} &deg;C`
     console.log(data)
   }
 </script>
