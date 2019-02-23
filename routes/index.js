@@ -24,7 +24,10 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/update', (req, res, next) => {
-  client.publish(req.query.channel, JSON.stringify(req.query), err => {
+  let query = req.query;
+  query.time_stamp = new Date();
+
+  client.publish(req.query.channel, JSON.stringify(query), err => {
     if (err) {
       debug(err);
       return res.status(500).send(err.message);
@@ -37,7 +40,7 @@ router.get('/update', (req, res, next) => {
             humidity: req.query.humidity,
             concentration: req.query.conc,
             temperature: req.query.temperature,
-            time_stamp: moment()
+            time_stamp: query.time_stamp
           }
         }
       }

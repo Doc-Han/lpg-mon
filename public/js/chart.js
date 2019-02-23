@@ -5,6 +5,11 @@ window.onload = () => {
     document.getElementById('gas-conc').innerText = data.conc;
     document.getElementById('temperature').innerText = data.temperature;
     document.getElementById('humidity').innerText = data.humidity;
+    // document.getElementById('t_stamp').innerText = `djodo`;
+    let ts = document.getElementsByClassName('t_stamp');
+    [].forEach.call(document.getElementsByClassName('t_stamp'), el => {
+      el.innerText = `${new Date(data.time_stamp)}`;
+    });
   };
 };
 FusionCharts.ready(function() {
