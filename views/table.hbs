@@ -1,22 +1,24 @@
-<table class="table table-bordered">
-    <thead>
-        <tr>
-            <th scope="col">Row</th>
-            <th scope="col">Time</th>
-            <th scope="col">Gas Concentration</th>
-            <th scope="col">Temperature</th>
-            <th scope="col">Humidity</th>
-        </tr>
-    </thead>
-    <tbody>
-        {{#each result as |result index|}}
-        <tr>
-            <th scope="row">{{index}}</th>
-            <td>{{result}}</td>
-            <td>{{result.concetration}}</td>
-            <td>{{result.temperature}}</td>
-            <td>{{result.humidity}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
+<section class="container" style="padding:50px auto">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Row</th>
+                <th scope="col">Time</th>
+                <th scope="col">Gas Concentration</th>
+                <th scope="col">Temperature</th>
+                <th scope="col">Humidity</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each result.logs as |res index|}}
+            <tr>
+                <th scope="row">{{index}}</th>
+                <td>{{res.time_stamp}}</td>
+                <td>{{res.concentration}}</td>
+                <td>{{res.temperature}}</td>
+                <td>{{res.humidity}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+</section>
