@@ -8,7 +8,7 @@ module.exports = {
   },
   mqtt: {
     url: mqtt_url,
-    channel: process.env.MQTT_CHANNEL || 'wiromos',
+    channel: process.env.MQTT_CHANNEL,
     options: {
       port: mqtt_url.port,
       host: mqtt_url.host,
