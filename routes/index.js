@@ -22,7 +22,9 @@ client.once('connect', () => {
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
-
+router.get('/ping', function(req, res, next) {
+  res.send('PONG');
+});
 router.get('/update', (req, res, next) => {
   let query = req.query;
   query.time_stamp = new Date();
@@ -48,7 +50,7 @@ router.get('/update', (req, res, next) => {
       if (err) debug(err);
       debug(result);
     });
-    return res.status(204).end();
+    return res.status(204).send('OK');
   });
 });
 
