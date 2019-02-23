@@ -25,6 +25,13 @@ router.get('/', function(req, res, next) {
 router.get('/ping', function(req, res, next) {
   res.send('PONG');
 });
+
+router.get('/logs', function(req, res, nex){
+  Sensor.findOne().exec((err, result)=>{
+    if(err) return debug(err)
+    res.render('table', {title: 'Raw Data', result});
+  })
+});
 router.get('/update', (req, res, next) => {
   let query = req.query;
   query.time_stamp = new Date();
