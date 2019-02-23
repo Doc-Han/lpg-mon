@@ -1,12 +1,14 @@
 var express = require('express');
 var router = express.Router();
 let i = 20000;
+const moment = require('moment');
 const { connect } = require('mqtt');
 const { mqtt } = require('../config/env');
 const client = connect(
   mqtt.url,
   mqtt.options
 );
+const Sensor = require('../models/sensor');
 const debug = require('debug')('lpg:index.js');
 client.once('connect', () => {
   debug('MQTT client connected.');
@@ -27,6 +29,22 @@ router.get('/update', (req, res, next) => {
       debug(err);
       return res.status(500).send(err.message);
     }
+    Sensor.findOneAndUpdate(
+      { ser_no: req.query.ser_no },
+      {
+        $addToSet: {
+          logs: {
+            humidity: req.query.humidity,
+            concentration: req.query.conc,
+            temperature: req.query.temperature,
+            time: moment()
+          }
+        }
+      }
+    ).exec((err, result) => {
+      if (err) debug(err);
+      debug(result);
+    });
     return res.status(204).end();
   });
 });

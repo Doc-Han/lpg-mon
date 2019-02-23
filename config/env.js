@@ -4,7 +4,7 @@ const mqtt_auth = (mqtt_url.auth || ':').split(':');
 
 module.exports = {
   database: {
-    url: process.env.MONGODB_URL
+    url: process.env.MONGODB_URI
   },
   mqtt: {
     url: mqtt_url,

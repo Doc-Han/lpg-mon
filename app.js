@@ -9,6 +9,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var mongoose = require('mongoose');
 var app = express();
+var debug = require('debug')('lpg:app.js');
 mongoose.Promise = require('bluebird');
 mongoose.connect(database.url, {
   reconnectTries: Number.MAX_VALUE,
