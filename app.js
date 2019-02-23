@@ -4,12 +4,17 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var { database } = require('./config/env');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var mongoose = require('mongoose');
 var app = express();
-
+mongoose.Promise = require('bluebird');
+mongoose.connect(database.url, {
+  reconnectTries: Number.MAX_VALUE,
+  reconnectInterval: 1000,
+  useNewUrlParser: true
+});
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -40,3 +45,21 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+// MONGOOSE DEFAULTS
+mongoose.connection.on('connected', function() {
+  debug('Mongoose default connection connected');
+});
+mongoose.connection.on('error', function(err) {
+  debug('Mongoose default connection error:' + err);
+});
+mongoose.connection.on('disconnected', function() {
+  debug('Mongoose default connection disconnected');
+});
+process.on('SIGINT', function() {
+  mongoose.connection.close(function() {
+    console.log('Mongoose default connection disconnected on app termination');
+    debug('Mongoose default connection disconnected on app termination');
+    process.exit(0);
+  });
+});
