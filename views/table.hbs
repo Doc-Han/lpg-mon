@@ -9,13 +9,13 @@
         </tr>
     </thead>
     <tbody>
-        {{#each result as |result|}}
+        {{#each result as |result index|}}
         <tr>
-            <th scope="row">1</th>
-            <td>20</td>
-            <td>50</td>
-            <td>45</td>
-            <td>34</td>
+            <th scope="row">{{index}}</th>
+            <td>{{result}}</td>
+            <td>{{result.concetration}}</td>
+            <td>{{result.temperature}}</td>
+            <td>{{result.humidity}}</td>
         </tr>
         {{/each}}
     </tbody>
