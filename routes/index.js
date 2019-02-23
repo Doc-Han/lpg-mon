@@ -27,9 +27,9 @@ router.get('/ping', function(req, res, next) {
 });
 
 router.get('/logs', function(req, res, nex){
-  Sensor.findOne().exec((err, result)=>{
+  Sensor.findOne({}).exec((err, result)=>{
     if(err) return debug(err)
-    res.render('table', {title: 'Raw Data', result});
+    res.render('table', {title: 'Raw Data', result:result});
   })
 });
 router.get('/update', (req, res, next) => {
