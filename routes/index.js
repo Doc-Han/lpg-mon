@@ -37,7 +37,7 @@ router.get('/update', (req, res, next) => {
             humidity: req.query.humidity,
             concentration: req.query.conc,
             temperature: req.query.temperature,
-            time: moment()
+            time_stamp: moment()
           }
         }
       }
