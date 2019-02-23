@@ -1,4 +1,12 @@
-window.onload = () => {};
+window.onload = () => {
+  var evtSource = new EventSource('/stream');
+  evtSource.onmessage = e => {
+    let data = JSON.parse(e.data);
+    document.getElementById('gas-conc').innerText = data.conc;
+    document.getElementById('temperature').innerText = data.temperature;
+    document.getElementById('humidity').innerText = data.humidity;
+  };
+};
 FusionCharts.ready(function() {
   var fusioncharts = new FusionCharts({
     type: 'column2d',
@@ -54,5 +62,4 @@ FusionCharts.ready(function() {
     }
   });
   fusioncharts.render();
-  console.log(fusioncharts);
 });
